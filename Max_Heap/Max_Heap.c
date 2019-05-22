@@ -16,7 +16,9 @@ int main()
 	{
 		int I_th, item;
 
-		printf("I(insert)\nD(delete)\nT(print)\n");
+		printf("I(insert)\nD(delete)\nT(print)\nQ(quit)");
+	
+		command=0;
 		scanf("%c", &command);
 
 		printf("Command Inputed \n");
@@ -35,25 +37,31 @@ int main()
 
 		case'T':
 			scanf("%d", &I_th);
-			if (I_th == NULL)	Print_Ith(1);
+			if(I_th<=0)	break;
+
+			I_th=search(I_th);
+			if (I_th == 0)	Print_Ith(1);
 			else Print_Ith(I_th);
 			break;
 
 		case'D':
 			scanf("%d", &I_th);
-			if (HEAP_EMPTY(index))
+			I_th=search(I_th);
+
+			if (HEAP_EMPTY(index)||(I_th<=0))
 			{
-				printf("EMPTY\n");	break;
+				printf("Error\n");	break;
 			}
 			if (I_th == NULL)	pop(&index, 1);
 			else pop(&index, I_th);
 			break;
+		case'Q':
+			return 0;
 
 		default:
 			printf("Wrong Input\n");
 			break;
 		}
 		printf("Now Key Value=%d \n index=%d\n", HEAP[index].key, index);
-		command = 0;
 	}
 }

@@ -1,3 +1,4 @@
+#include <math.h>
 #define MAX_ELEMENTS (10^6)
 
 
@@ -8,9 +9,17 @@ typedef struct
 element HEAP[MAX_ELEMENTS];
 int parent, child;
 
+/*I-th Big Value Finder*/
+int search(int I_th)
+{
+	int index;
+	for(index=(int)log2((2^I_th)-1)+1; index<=I_th;index++);
+	return HEAP[index-1].key;
+}
+
 /*Delete I-th max value from heap*/
 
-void pop(int* index, int I_th)
+int pop(int* index, int I_th)
 {
 	int item, temp;
 	printf("Move to Pop\n");
@@ -33,15 +42,17 @@ void pop(int* index, int I_th)
 		child *= 2;
 	}
 	HEAP[parent].key = temp;
+	return 0;
 }
 
 /* Insert x into Max heap*/
 
-void push(int* index, int item)
+int push(int* index, int item)
 {
 	int i;
 	printf("Move to Push\n");
 	printf("%d Inputed \n", item);
+	if(item<0)	return 0;
 	i = ++(*index);
 	while ((i != 1) && (item > HEAP[i / 2].key))
 	{
@@ -49,6 +60,7 @@ void push(int* index, int item)
 		i /= 2;
 	}
 	HEAP[i].key = item;
+	return 0;
 }
 
 
