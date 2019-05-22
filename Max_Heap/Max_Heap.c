@@ -11,28 +11,24 @@ int index = 0;
 
 int main()
 {
-	char command = 0;
+	char command[5] = { 0 };
+	int I_th;
+	printf("I(insert)\nD(delete)\nT(print)\nQ(quit)\n");
 	while (1)
 	{
-		int I_th, item;
+		scanf("%s", &command);
 
-		printf("I(insert)\nD(delete)\nT(print)\nQ(quit)");
-	
-		command=0;
-		scanf("%c", &command);
-
-		printf("Command Inputed \n");
-
-		switch (command)
+		printf("\n");
+		switch (command[0])
 		{
 		case'I':
-			scanf("%d", &item);
-			printf("Item Inputed\n");
+			scanf("%d", &I_th);
+			printf("%d", I_th);
 			if (HEAP_FULL(index))
 			{
 				printf("FULLLL\n");	break;
 			}
-			push(&index, item);
+			push(&index, I_th);
 			break;
 
 		case'T':
@@ -40,8 +36,8 @@ int main()
 			if(I_th<=0)	break;
 
 			I_th=search(I_th);
-			if (I_th == 0)	Print_Ith(1);
-			else Print_Ith(I_th);
+			if (!(I_th) == 0) Print_Ith(I_th);
+			else printf("0 ¾Ë¾ÒÀ½ \n");
 			break;
 
 		case'D':
@@ -52,8 +48,19 @@ int main()
 			{
 				printf("Error\n");	break;
 			}
-			if (I_th == NULL)	pop(&index, 1);
+			if (I_th == 0)	pop(&index, 1);
 			else pop(&index, I_th);
+			break;
+
+		case'P':
+			if (HEAP_FULL(index)||HEAP_EMPTY(index))
+			{
+				printf("Error\n");
+				break;
+			}
+			for (int j = 1;j <= index;j++)
+				printf("%d ", HEAP[j].key);
+			printf("\n");
 			break;
 		case'Q':
 			return 0;
@@ -62,6 +69,6 @@ int main()
 			printf("Wrong Input\n");
 			break;
 		}
-		printf("Now Key Value=%d \n index=%d\n", HEAP[index].key, index);
+		printf("\n");
 	}
 }
