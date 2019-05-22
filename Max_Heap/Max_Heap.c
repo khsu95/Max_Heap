@@ -19,13 +19,13 @@ int main()
 		printf("I(insert)\nD(delete)\nT(print)\n");
 		scanf("%c", &command);
 
-		printf("커맨드 입력 \n");
+		printf("Command Inputed \n");
 
 		switch (command)
 		{
 		case'I':
 			scanf("%d", &item);
-			printf("아이템 입력 \n");
+			printf("Item Inputed\n");
 			if (HEAP_FULL(index))
 			{
 				printf("FULLLL\n");	break;
@@ -35,8 +35,8 @@ int main()
 
 		case'T':
 			scanf("%d", &I_th);
-			if (I_th == NULL)	Print_Ith(index, 1);
-			else Print_Ith(index, I_th);
+			if (I_th == NULL)	Print_Ith(1);
+			else Print_Ith(I_th);
 			break;
 
 		case'D':
@@ -53,7 +53,7 @@ int main()
 			printf("Wrong Input\n");
 			break;
 		}
-		printf("지금은 %d \n index=%d\n", HEAP[index].key, index);
+		printf("Now Key Value=%d \n index=%d\n", HEAP[index].key, index);
 		command = 0;
 	}
 }

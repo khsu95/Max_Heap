@@ -13,11 +13,11 @@ int parent, child;
 void pop(int* index, int I_th)
 {
 	int item, temp;
-	printf("팝으로 이동 \n");
-	printf("%d 입력 \n", I_th);
+	printf("Move to Pop\n");
+	printf("%d inputed\n", I_th);
 	if (*index < I_th)
 	{
-		printf("범위를 초과하는 출력요구 \n");
+		printf("Input Error too Big\n");
 		return 0;
 	}
 	item = HEAP[I_th].key;
@@ -40,8 +40,8 @@ void pop(int* index, int I_th)
 void push(int* index, int item)
 {
 	int i;
-	printf("푸시로 이동 \n");
-	printf("%d 입력 \n", item);
+	printf("Move to Push\n");
+	printf("%d Inputed \n", item);
 	i = ++(*index);
 	while ((i != 1) && (item > HEAP[i / 2].key))
 	{
