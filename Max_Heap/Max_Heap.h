@@ -12,9 +12,9 @@ int parent, child;
 /*I-th Big Value Finder*/
 int search(int I_th)
 {
-	int index;
-	for(index=(int)log2((2^I_th)-1)+1; index<=I_th;index++);
-	return HEAP[index-1].key;
+	double index=(2^I_th)-1;
+	for(index=((log(index))/(log(2)))+1; index<=I_th;index++);
+	return HEAP[(int)index-1].key;
 }
 
 /*Delete I-th max value from heap*/
